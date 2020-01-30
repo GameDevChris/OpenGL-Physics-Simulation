@@ -4,6 +4,11 @@
 
 #pragma comment(lib, "glew32.lib") 
 
+#include "Cube.h"
+Cube cube(glm::vec3(1,0,0));
+Cube cube1(glm::vec3(0, 2, 0));
+Cube cube2(glm::vec3(3, 0, 1));
+
 // Drawing routine.
 void drawScene()
 {
@@ -13,6 +18,10 @@ void drawScene()
 
 	// Position the objects for viewing.
 	gluLookAt(0.0, 0.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+
+	cube.Draw();
+	cube1.Draw();
+	cube2.Draw();
 
 	glPushMatrix();
 	glColor3f(0, 1, 0);

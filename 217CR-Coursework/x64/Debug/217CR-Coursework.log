@@ -1,1 +1,6 @@
-﻿  217CR-Coursework.vcxproj -> F:\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe
+﻿  Cube.cpp
+  Source.cpp
+F:\University\217CR\8522104\217CR-Coursework\Source.cpp(37,28): warning C4305:  'argument': truncation from 'double' to 'GLfloat'
+  Generating Code...
+F:\University\217CR\8522104\217CR-Coursework\Source.cpp(48,25): warning C4305:  'argument': truncation from 'double' to 'GLfloat'
+  217CR-Coursework.vcxproj -> F:\University\217CR\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe
