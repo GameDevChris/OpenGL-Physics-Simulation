@@ -1,14 +1,11 @@
 #pragma once
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <glm/glm.hpp>
+#include "GameObject.h"
 
-class Cube
+
+class Cube : public GameObject
 {
-private:
-	glm::vec3 position;
-
 public:
+	Cube();
 	Cube(glm::vec3 pos);
 	~Cube();
 

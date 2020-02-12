@@ -3,9 +3,12 @@
 #include <GL/freeglut.h>
 #include <glm/glm.hpp>
 
-Cube::Cube(glm::vec3 pos)
+Cube::Cube()
 {
-	position = pos;
+}
+
+Cube::Cube(glm::vec3 pos): GameObject(pos)
+{
 }
 
 Cube::~Cube()
