@@ -13,3 +13,6 @@ GameObject::~GameObject()
 {
 }
 
+void GameObject::Update(float deltaTime)
+{
+}

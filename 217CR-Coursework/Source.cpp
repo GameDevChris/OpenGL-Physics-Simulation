@@ -2,53 +2,33 @@
 #include <GL/freeglut.h>
 #include <glm/glm.hpp>
 
+using namespace std;
 #pragma comment(lib, "glew32.lib") 
 
 #include "Cube.h"
-Cube cube(glm::vec3(1,0,0));
-GameObject* cubePtr = &cube;
+#include <iostream>
+#include <vector>
 
-GameObject* cubePtr2 = new Cube(glm::vec3(1, 0, 0));
+vector<GameObject*> objects;
+
+GameObject* cube = new Cube(glm::vec3(1, 0, 0));
+GameObject* cube2 = new Cube(glm::vec3(3, 0, 1));
+
+int oldTimeSinceStart = 0;
+int newTimeSinceStart = 0;
+
+
 
 // Drawing routine.
 void drawScene()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glLoadIdentity();
-
-	// Position the objects for viewing.
 	gluLookAt(0.0, 0.0, -10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
-
-	cube.Draw();
-
-	glPushMatrix();
-	glColor3f(0, 1, 0);
-	glBegin(GL_QUADS);
-	glVertex3f(5, 0, 5);
-	glVertex3f(-5, 0, 5);
-	glVertex3f(-5, 0, -5);
-	glVertex3f(5, 0, -5);
-	glEnd();
-	glPopMatrix();
-
-	glPushMatrix();
-	glColor3f(0.55, 0.27, 0.07);
-	glRotatef(-45, 1, 0, 0);
-	glutSolidCone(0.5, 0.75, 30, 30);
-	glPopMatrix();
-
-	glPushMatrix();
-	glColor3f(-2, 0, 2);
-	glTranslatef(-2, 0, 2);
-	glRotatef(-90, 0, 1, 0);
-	glutSolidCone(0.5, 0.75, 30, 30);
-	glPushMatrix();
-	glTranslatef(0, 0, -0.4);
-	glColor3f(1, 1, 1);
-	glutSolidCube(0.8);
-	glPopMatrix();
-	glPopMatrix();
+	for (int i = 0; i < objects.size(); ++i)
+	{
+		objects[i]->Draw();
+	}
 
 	glutSwapBuffers();
 }
@@ -57,6 +37,8 @@ void drawScene()
 void setup(void)
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
+	objects.push_back(cube);
+	objects.push_back(cube2);
 }
 
 // OpenGL window reshape routine.
@@ -75,7 +57,44 @@ void keyInput(unsigned char key, int x, int y)
 	switch (key)
 	{
 	case 27:
+		for (int i = 0; i < objects.size(); ++i)
+		{
+			delete objects[i];
+		}
 		exit(0);
+		break;
+	case 'w':
+		cout << "Moving forward in - Z" << endl;
+		break;
+	case 's':
+		cout << "Moving backward in + Z" << endl;
+		break;
+	case 'a':
+		cout << "Moving left in - X" << endl;
+		break;
+	case 'd':
+		cout << "Moving right in + X" << endl;
+		break;
+	default:
+		break;
+	}
+}
+
+void keySpecialInput(int key, int x, int y)
+{
+	switch (key)
+	{
+	case GLUT_KEY_UP:
+		cout << "Moving forward in - Z" << endl;
+		break;
+	case GLUT_KEY_DOWN:
+		cout << "Moving backward in +Z" << endl;
+		break;
+	case GLUT_KEY_LEFT:
+		cout << "Moving left in -X" << endl;
+		break;
+	case GLUT_KEY_RIGHT:
+		cout << "Moving right in +X" << endl;
 		break;
 	default:
 		break;
@@ -84,6 +103,18 @@ void keyInput(unsigned char key, int x, int y)
 
 void idle()
 {
+	oldTimeSinceStart = newTimeSinceStart;
+	newTimeSinceStart = glutGet(GLUT_ELAPSED_TIME);
+
+	float deltaTime = (newTimeSinceStart - oldTimeSinceStart);
+	
+	deltaTime /= 1000.f;
+
+	for (int i = 0; i < objects.size(); ++i)
+	{
+		objects[i]->Update(deltaTime);
+	}
+
 	glutPostRedisplay();
 }
 
@@ -102,6 +133,7 @@ int main(int argc, char** argv)
 	glutDisplayFunc(drawScene);
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyInput);
+	glutSpecialFunc(keySpecialInput);
 	glutIdleFunc(idle);
 
 	glewExperimental = GL_TRUE;

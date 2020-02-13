@@ -10,4 +10,5 @@ public:
 	~Cube();
 
 	void Draw();
+	void Update(float);
 };

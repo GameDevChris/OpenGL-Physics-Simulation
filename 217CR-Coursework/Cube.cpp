@@ -23,3 +23,9 @@ void Cube::Draw()
 	glutSolidCube(1.0f);
 	glPopMatrix();
 }
+
+void Cube::Update(float deltaTime)
+{
+	position.y -= 0.1f * deltaTime;
+	position.y -= 0.1f;
+}

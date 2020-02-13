@@ -1,4 +1,2 @@
 ﻿  Source.cpp
-E:\University\217CR\8522104\217CR-Coursework\Source.cpp(36,28): warning C4305:  'argument': truncation from 'double' to 'GLfloat'
-E:\University\217CR\8522104\217CR-Coursework\Source.cpp(47,25): warning C4305:  'argument': truncation from 'double' to 'GLfloat'
   217CR-Coursework.vcxproj -> E:\University\217CR\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe
