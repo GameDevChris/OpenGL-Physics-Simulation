@@ -1,5 +1,8 @@
 #include "GameObject.h"
 
+std::map<char, bool> GameObject::keys;
+std::map<int, bool> GameObject::specialKeys;
+
 GameObject::GameObject()
 {
 }

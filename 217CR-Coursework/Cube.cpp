@@ -26,6 +26,12 @@ void Cube::Draw()
 
 void Cube::Update(float deltaTime)
 {
-	position.y -= 0.1f * deltaTime;
-	position.y -= 0.1f;
+	if (GameObject::specialKeys[GLUT_KEY_UP] == true)
+		position.z += 1.f * deltaTime;
+	if (GameObject::specialKeys[GLUT_KEY_DOWN] == true)
+		position.z -= 1.f * deltaTime;
+	if (GameObject::specialKeys[GLUT_KEY_RIGHT] == true)
+		position.x -= 1.f * deltaTime;
+	if (GameObject::specialKeys[GLUT_KEY_LEFT] == true)
+		position.x += 1.f * deltaTime;
 }

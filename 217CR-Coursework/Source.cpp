@@ -54,6 +54,8 @@ void resize(int w, int h)
 // Keyboard input processing routine.
 void keyInput(unsigned char key, int x, int y)
 {
+	GameObject::keys[key] = true;
+
 	switch (key)
 	{
 	case 27:
@@ -80,8 +82,16 @@ void keyInput(unsigned char key, int x, int y)
 	}
 }
 
+void keyInputUp(unsigned char key, int x, int y)
+{
+	GameObject::keys[key] = false;
+}
+
 void keySpecialInput(int key, int x, int y)
 {
+	cout << "input down" << endl;
+	GameObject::specialKeys[key] = true;
+
 	switch (key)
 	{
 	case GLUT_KEY_UP:
@@ -99,6 +109,12 @@ void keySpecialInput(int key, int x, int y)
 	default:
 		break;
 	}
+}
+
+void keySpecialInputUp(int key, int x, int y)
+{
+	cout << "input up" << endl;
+	GameObject::specialKeys[key] = false;
 }
 
 void idle()
@@ -133,7 +149,9 @@ int main(int argc, char** argv)
 	glutDisplayFunc(drawScene);
 	glutReshapeFunc(resize);
 	glutKeyboardFunc(keyInput);
+	glutKeyboardUpFunc(keyInputUp);
 	glutSpecialFunc(keySpecialInput);
+	glutSpecialUpFunc(keySpecialInputUp);
 	glutIdleFunc(idle);
 
 	glewExperimental = GL_TRUE;
