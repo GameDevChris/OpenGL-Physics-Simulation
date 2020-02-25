@@ -87,11 +87,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>E:\University\212CR\OpenGL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\University\212CR\OpenGL\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>E:\University\212CR\OpenGL\include</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\University\212CR\OpenGL\include</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,11 +127,17 @@
   <ItemGroup>
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RigidBody2D.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="RigidBody2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

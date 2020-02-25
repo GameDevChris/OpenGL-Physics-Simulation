@@ -6,13 +6,20 @@ using namespace std;
 #pragma comment(lib, "glew32.lib") 
 
 #include "Cube.h"
+#include "Particle.h"
+#include "Player.h"
+#include "RigidBody2D.h"
 #include <iostream>
 #include <vector>
 
 vector<GameObject*> objects;
 
-GameObject* cube = new Cube(glm::vec3(1, 0, 0));
-GameObject* cube2 = new Cube(glm::vec3(3, 0, 1));
+//GameObject* cube = new Cube(glm::vec3(1, 0, 0));
+//GameObject* cube2 = new Cube(glm::vec3(3, 0, 1));
+//GameObject* particle1 = new Particle(1.0f, glm::vec3(0, 0, 0));
+//GameObject* player1 = new Player(1.0f, glm::vec3(2, 0, 0));
+
+GameObject* rb2D = new RigidBody2D(1.0f, 0.0f, 1.0f, 1.0f, glm::vec3(2, 0, 0));
 
 int oldTimeSinceStart = 0;
 int newTimeSinceStart = 0;
@@ -37,8 +44,11 @@ void drawScene()
 void setup(void)
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
-	objects.push_back(cube);
-	objects.push_back(cube2);
+	//objects.push_back(cube);
+	//objects.push_back(cube2);
+	//objects.push_back(particle1);
+	//objects.push_back(player1);
+	objects.push_back(rb2D);
 }
 
 // OpenGL window reshape routine.
