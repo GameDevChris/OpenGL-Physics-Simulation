@@ -24,8 +24,8 @@ void RigidBody2D::Draw()
 {
 	glPushMatrix();
 		glTranslatef(position.x, position.y, position.z);
-		glRotatef(orientation, 0, 0, 1);
-		glColor3f(1.f, 1.f, 1.f);
+		glRotatef(orientation, 1, 0, 1);
+		glColor3f(1.f, 0.f, 0.f);
 
 		glBegin(GL_QUADS);
 			glVertex3f(-length, width, 0);
@@ -51,9 +51,31 @@ void RigidBody2D::Update(float deltaTime)
 
 void RigidBody2D::CalculateForces(float deltaTime)
 {
-	glm::vec3 forcePos = glm::vec3(1, 1, 0);
-	glm::vec3 forceValue = glm::vec3(2, 0, 0);
+	glm::vec3 forcePos = glm::vec3(10, 10, 0);
+	glm::vec3 forceValue = glm::vec3(0, 0, 0);
+
+	if (GameObject::specialKeys[GLUT_KEY_LEFT])
+	{
+		forceValue += glm::vec3(0.5, 0, 0);
+	}
+
+	if (GameObject::specialKeys[GLUT_KEY_RIGHT])
+	{
+		forceValue += glm::vec3(-0.5, 0, 0);
+	}
+	
+	if (GameObject::specialKeys[GLUT_KEY_UP])
+	{
+		forceValue += glm::vec3(0, 0.5, 0);
+	}
+
+	if (GameObject::specialKeys[GLUT_KEY_DOWN])
+	{
+		forceValue += glm::vec3(0, -0.5, 0);
+	}
+
 	glm::vec3 torque = degrees(glm::cross(forcePos, forceValue));
+
 	inertia = (mass/12) * (pow(length,2) + pow(width,2));
 
 	linear_totalForce = glm::vec3(0, 0, 0);
