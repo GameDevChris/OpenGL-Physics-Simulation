@@ -13,6 +13,31 @@ void GameEngine::UpdateGame()
 
 	deltaTime /= 1000.f;
 
+	for (int i = 0; i < objects.size(); i++)
+	{
+		for (int j = 0; j < objects.size(); j++)
+		{
+			if (i == j) 
+			{
+				continue;
+			}
+			else 
+			{
+				if (objects[i]->collider.CollideCheck(objects[j]->collider))
+				{
+					objects[i]->collided = true;
+					objects[j]->collided = true;
+					cout << "Collided" << endl;
+				}
+				else 
+				{
+					objects[i]->collided = false;
+					objects[j]->collided = false;
+				}
+			}
+		}
+	}
+
 	for (int i = 0; i < objects.size(); ++i)
 	{
 		objects[i]->Update(deltaTime);

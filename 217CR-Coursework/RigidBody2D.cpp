@@ -24,13 +24,16 @@ void RigidBody2D::Draw()
 {
 	glPushMatrix();
 		glTranslatef(position.x, position.y, position.z);
-		glRotatef(orientation, 1, 0, 1);
+		glRotatef(orientation, 0, 0, 1);
 		glColor3f(1.f, 0.f, 0.f);
 
 		glBegin(GL_QUADS);
 			glVertex3f(-length, width, 0);
+			glColor3f(0.f, 1.f, 0.f);
 			glVertex3f(length, width, 0);
+			glColor3f(0.f, 0.f, 1.f);
 			glVertex3f(length, -width, 0);
+			glColor3f(1.f, 1.f, 0.f);
 			glVertex3f(-length, -width, 0);
 		glEnd();
 
@@ -51,7 +54,7 @@ void RigidBody2D::Update(float deltaTime)
 
 void RigidBody2D::CalculateForces(float deltaTime)
 {
-	glm::vec3 forcePos = glm::vec3(10, 10, 0);
+	glm::vec3 forcePos = glm::vec3(0, 5, 0);
 	glm::vec3 forceValue = glm::vec3(0, 0, 0);
 
 	if (GameObject::specialKeys[GLUT_KEY_LEFT])
@@ -79,7 +82,7 @@ void RigidBody2D::CalculateForces(float deltaTime)
 	inertia = (mass/12) * (pow(length,2) + pow(width,2));
 
 	linear_totalForce = glm::vec3(0, 0, 0);
-	linear_totalForce += forceValue * mass;
+	linear_totalForce += 5.0f * forceValue * mass;
 	linear_acceleration = linear_totalForce / mass;
 	position += linear_velocity * deltaTime;
 	linear_velocity += linear_acceleration * deltaTime;
