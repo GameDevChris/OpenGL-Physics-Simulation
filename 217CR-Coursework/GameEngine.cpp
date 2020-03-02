@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include "ColData.h"
 
 std::vector<GameObject*> GameEngine::objects;
 int GameEngine::oldTimeSinceStart;
@@ -27,7 +28,10 @@ void GameEngine::UpdateGame()
 				{
 					objects[i]->collided = true;
 					objects[j]->collided = true;
-					cout << "Collided" << endl;
+
+					ColData Data;
+					Data.GetColData(objects[i], objects[j]);
+					Data.PrintData();
 				}
 				else 
 				{

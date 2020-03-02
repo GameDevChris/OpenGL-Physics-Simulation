@@ -136,6 +136,7 @@
     <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColData.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
