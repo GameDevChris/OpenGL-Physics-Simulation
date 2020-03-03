@@ -5,8 +5,9 @@
 class Obstacle : public GameObject
 {
 public:
-	Obstacle(glm::vec3 position);
+	Obstacle(float m, float r, glm::vec3 position);
 	~Obstacle();
 	void Draw();
+	void Update(float deltaTime);
 };
 

@@ -31,7 +31,11 @@ void GameEngine::UpdateGame()
 
 					ColData Data;
 					Data.GetColData(objects[i], objects[j]);
-					Data.PrintData();
+					Data.CalculateImpulse();
+					Data.FixPenetration();
+					Data.AddImpulse();
+					
+					
 				}
 				else 
 				{
@@ -106,7 +110,7 @@ void GameEngine::InitEngine(int argc, char** argv, const char* windowTitle, int 
 			switch (key)
 			{
 				case 27:
-					CleanupEngine;
+					CleanupEngine();
 					exit(0);
 					break;
 

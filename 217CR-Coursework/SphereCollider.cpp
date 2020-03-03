@@ -21,6 +21,7 @@ void SphereCollider::Draw()
 	glPushMatrix();
 		glColor3f(0.f, 1.f, 0.f); 
 		glTranslatef(colPosition.x, colPosition.y, colPosition.z);
+		glRotatef(colRotation, 0, 0, 1);
 		glutWireSphere(radius, 10, 10);
 	glPopMatrix();
 }
@@ -38,3 +39,5 @@ bool SphereCollider::CollideCheck(SphereCollider& otherCol)
 
 	return(distanceVector <= totalRadius);
 }
+
+

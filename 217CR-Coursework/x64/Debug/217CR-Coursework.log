@@ -1,5 +1,3 @@
 ﻿  GameEngine.cpp
-F:\University\217CR\8522104\217CR-Coursework\GameEngine.h(8,10): warning C4067:  unexpected tokens following preprocessor directive - expected a newline
-F:\University\217CR\8522104\217CR-Coursework\GameEngine.cpp(13,18): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
-F:\University\217CR\8522104\217CR-Coursework\GameEngine.cpp(109,6): warning C4551:  function call missing argument list
-  217CR-Coursework.vcxproj -> F:\University\217CR\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe
+E:\University\217CR\8522104\217CR-Coursework\GameEngine.cpp(13,18): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
+  217CR-Coursework.vcxproj -> E:\University\217CR\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe

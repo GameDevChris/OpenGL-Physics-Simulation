@@ -7,6 +7,7 @@ RigidBody2D::RigidBody2D(float m, float r, float l, float w, glm::vec3 position)
 	linear_velocity = glm::vec3(0, 0, 0);
 	linear_acceleration = glm::vec3(0, 0, 0);
 	linear_totalForce = glm::vec3(0, 0, 0);
+
 	orientation = r;
 	angular_acceleration = glm::vec3(0, 0, 0);
 	angular_velocity = glm::vec3(0, 0, 0);

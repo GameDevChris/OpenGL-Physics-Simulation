@@ -5,7 +5,7 @@
 #include "RigidBody2D.h"
 #include "Cube.h"
 #include "Particle.h"
-#include "Player.h";
+#include "Player.h"
 #include "Obstacle.h"
 #include "SphereCollider.h"
 
