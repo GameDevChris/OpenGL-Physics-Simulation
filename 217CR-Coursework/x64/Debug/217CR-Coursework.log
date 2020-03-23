@@ -1,3 +1,0 @@
-﻿  GameEngine.cpp
-E:\University\217CR\8522104\217CR-Coursework\GameEngine.cpp(13,18): warning C4244:  'initializing': conversion from 'int' to 'float', possible loss of data
-  217CR-Coursework.vcxproj -> E:\University\217CR\8522104\217CR-Coursework\x64\Debug\217CR-Coursework.exe
