@@ -37,7 +37,8 @@ void Player::Update(float deltaTime)
 	model->position = position;
 	//FindForward();
 	//DrawLines();
-	
+
+
 
 	glm::vec3 forcePos = glm::vec3(0, 1, 0);
 
@@ -46,7 +47,18 @@ void Player::Update(float deltaTime)
 	inertia = 2 * (mass / 5) * (pow(0.5, 2));
 
 	linear_totalForce = glm::vec3(0, 0, 0);
-	linear_totalForce +=  forceValue * mass;
+	linear_totalForce += forceValue * mass;
+
+	//cout << "(" << orientation.x << ", " << orientation.y << ", " << orientation.z << ")" << endl;
+
+	//Rotate force
+	//cout << "Before Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl;
+	
+	glm::mat4 rotation = glm::mat4(1.0f);
+	rotation = glm::rotate(rotation, -glm::radians(orientation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+	linear_totalForce = glm::mat3(rotation) * linear_totalForce;
+
+	//cout << "After Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl;
 
 	linear_acceleration = linear_totalForce / mass;
 	position += linear_velocity * deltaTime;
@@ -59,7 +71,7 @@ void Player::Update(float deltaTime)
 	angular_totalForce = glm::vec3(0, 0, 0);
 	angular_totalForce += torque;
 	angular_acceleration = angular_totalForce / inertia;
-	orientation += angular_velocity.x * deltaTime;
+	orientation.x += angular_velocity.x * deltaTime;
 	angular_velocity += angular_acceleration * deltaTime;
 	angular_velocity *= pow(0.5, deltaTime);
 	

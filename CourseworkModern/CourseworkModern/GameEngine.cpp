@@ -236,7 +236,7 @@ void GameEngine::InitEngine()
 
 	//Create window
 	cout << "Creating window..." << endl;
-	window = glfwCreateWindow(1920, 1080, "Ahhhhhh", NULL, NULL);
+	window = glfwCreateWindow(192, 108, "Ahhhhhh", NULL, NULL);
 	mainCamera.gameWindow = window;
 	if (window == NULL)
 	{

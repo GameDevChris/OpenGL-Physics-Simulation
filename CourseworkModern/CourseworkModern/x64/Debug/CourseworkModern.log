@@ -1,6 +1,4 @@
-﻿  GameEngine.cpp
-D:\University\212CR\CourseworkModern\CourseworkModern\GameObject.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\University\212CR\CourseworkModern\CourseworkModern\Cube.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\University\212CR\CourseworkModern\CourseworkModern\Light.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-D:\University\212CR\CourseworkModern\CourseworkModern\GameEngine.cpp(32,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  CourseworkModern.vcxproj -> D:\University\212CR\CourseworkModern\x64\Debug\CourseworkModern.exe
+﻿  Player.cpp
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameObject.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Player.cpp(47,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  CourseworkModern.vcxproj -> C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\x64\Debug\CourseworkModern.exe
