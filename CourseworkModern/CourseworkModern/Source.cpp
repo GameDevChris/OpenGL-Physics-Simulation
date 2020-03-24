@@ -26,7 +26,7 @@ GameEngine engine;
 
 GameObject* ambientLight = new Light(5.0f, glm::vec3(0, 0, 0), glm::vec3(0, 1, 3), glm::vec3(1, 1, 1), glm::vec3(1.0f, 1.0f, 1.0f), "./lamp.jpg");
 
-GameObject* player = new Player(5, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.2, 0.2, 0.2), glm::vec3(1, 1, 1), "./Hover/Hover.obj");
+GameObject* player = new Player(5, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.1, 0.1, 0.1), glm::vec3(1, 1, 1), "./Hover/Hover.obj");
 
 
 int main()
