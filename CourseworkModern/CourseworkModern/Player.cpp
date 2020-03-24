@@ -35,10 +35,6 @@ void Player::Update(float deltaTime)
 {
 	//playerFront = glm::vec3(0.0f);
 	model->position = position;
-	//FindForward();
-	//DrawLines();
-
-
 
 	glm::vec3 forcePos = glm::vec3(0, 1, 0);
 
@@ -52,13 +48,13 @@ void Player::Update(float deltaTime)
 	//cout << "(" << orientation.x << ", " << orientation.y << ", " << orientation.z << ")" << endl;
 
 	//Rotate force
-	//cout << "Before Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl;
+	cout << "Before Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl;
 	
 	glm::mat4 rotation = glm::mat4(1.0f);
 	rotation = glm::rotate(rotation, -glm::radians(orientation.x), glm::vec3(0.0f, 1.0f, 0.0f));
 	linear_totalForce = glm::mat3(rotation) * linear_totalForce;
 
-	//cout << "After Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl;
+	cout << "After Rotate (" << linear_totalForce.x << ", " << linear_totalForce.y << ", " << linear_totalForce.z << ")" << endl << endl;
 
 	linear_acceleration = linear_totalForce / mass;
 	position += linear_velocity * deltaTime;
