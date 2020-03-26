@@ -14,6 +14,8 @@ GameObject* GameEngine::mainPlayer;
 
 void GameEngine::UpdateGame()
 {
+	
+
 	glm::vec3 diffuseColor = mainLight->currentColor * glm::vec3(diffuseStrength);
 	glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
 	
@@ -46,31 +48,49 @@ void GameEngine::UpdateGame()
 
 
 	//Draw Light
+	engineShader.Use();
 	glm::mat4 model = glm::mat4(1.0f);
-	model = glm::scale(model, mainLight->scale);
 	model = glm::translate(model, mainLight->position);
+	model = glm::rotate(model, (float)glfwGetTime(), glm::vec3(0.5f, 1.0f, 0.0f));
+	model = glm::scale(model, mainLight->scale);
 	engineShader.setMat4("model", model);
-	mainLight->BindTexturesOnUnits();
-	mainLight->Draw();
-
+	mainLight->model->Draw(engineShader);
 	
 	
-	for (int i = 0; i < objects.size(); i++)
+	for (int i = 0; i < objects.size(); ++i)
 	{
-		glm::mat4 model = glm::mat4(1.0f);
+		objects[i]->BindTexturesOnUnits();
 		
-		model = glm::translate(model, glm::vec3(objects[i]->position.x, objects[i]->position.y, objects[i]->position.z));
-		
-		model = glm::rotate(model, -glm::radians(objects[i]->orientation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+		//if (objects[i]->state == "moving")
+		//{
+			glm::mat4 model = glm::mat4(1.0f);
 
-		model = glm::scale(model, objects[i]->scale);
+			model = glm::translate(model, glm::vec3(objects[i]->position.x, objects[i]->position.y, objects[i]->position.z));
 
-		engineShader.setMat4("model", model);
-		
+			model = glm::rotate(model, -glm::radians(objects[i]->orientation.x), glm::vec3(0.0f, 1.0f, 0.0f));
+
+			model = glm::scale(model, objects[i]->scale);
+
+			engineShader.setMat4("model", model);
+		//}
+
+		//else if (objects[i]->state == "idle"
+		//}
+		//cout << "There are " << objects.size() << " objects to be loaded" << endl;
+
 		objects[i]->Draw();
 		objects[i]->Update(deltaTime);
+		cout << endl;
 	}
 	
+	//Skybox
+	glDepthFunc(GL_LEQUAL);
+	skyboxShader.Use();
+	view = glm::mat4(glm::mat3(view));
+	skyboxShader.setMat4("view", view);
+	skyboxShader.setMat4("projection", projection);
+	mainSkybox->Draw();
+	glDepthFunc(GL_LESS);
 
 	//Swap buffers & poll IO events
 	glfwSwapBuffers(window);
@@ -80,16 +100,39 @@ void GameEngine::UpdateGame()
 void GameEngine::CreateTransforms()
 {
 	//View Matrix
-	glm::mat4 view = glm::mat4(1.0f);
-	view = glm::lookAt(glm::vec3(mainCamera.cameraPos), 
-		glm::vec3(mainCamera.cameraPos + mainCamera.cameraFront),
-		glm::vec3(mainCamera.cameraUp));
+	if (controlMode == 1)
+	{
+		view = glm::lookAt(glm::vec3(mainCamera.cameraPos),
+			glm::vec3(mainCamera.cameraPos + mainCamera.cameraFront),
+			glm::vec3(mainCamera.cameraUp));
+	}
+
+	else if (controlMode == 2)
+	{
+
+		view = glm::lookAt(glm::vec3(mainPlayer->position.x, mainPlayer->position.y + 3, mainPlayer->position.z),
+			mainPlayer->target->position,
+			glm::vec3(0, 1, 0));
+	}
+
+	else if (controlMode == 3)
+	{
+		view = glm::lookAt(mainPlayer->thirdPerson->position,
+			mainPlayer->target->position,
+			glm::vec3(0, 1, 0));
+	}
+
+	else if (controlMode == 4)
+	{
+		view = glm::lookAt(glm::vec3(0,20,0),
+			glm::vec3(mainPlayer->position),
+			glm::vec3(glm::vec3(0,1,0)));
+	}
 
 	engineShader.setMat4("view", view);
 	engineShader.setVec3("viewPos", mainCamera.cameraPos.x, mainCamera.cameraPos.y, mainCamera.cameraPos.z);
 
 	//Projection Matrix
-	glm::mat4 projection = glm::mat4(1.0f);
 	projection = glm::perspective(glm::radians(mainCamera.fov), 1920.0f / 1080.0f, 0.1f, 100.0f);
 	
 	engineShader.setMat4("projection", projection);
@@ -113,6 +156,11 @@ void GameEngine::SetupLights(GameObject* ambientLight)
 {
 	mainLight = ambientLight;
 	
+}
+
+void GameEngine::SetupSkybox(GameObject* skybox)
+{
+	mainSkybox = skybox;
 }
 
 void GameEngine::CleanupEngine()
@@ -159,11 +207,11 @@ void GameEngine::processInput(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 	{
-		if (controlMode == 0)
+		if (controlMode == 1)
 		{
 			mainCamera.cameraPos += cameraSpeed * mainCamera.cameraFront;
 		}
-		else if (controlMode == 1)
+		else
 		{
 			//mainPlayer->forceValue +=  mainPlayer->playerFront * mainPlayer->speed; 
 			mainPlayer->forceValue -= glm::vec3(1.0, 0.0, 0.0) *mainPlayer->speed; 
@@ -171,11 +219,11 @@ void GameEngine::processInput(GLFWwindow* window)
 	}
 	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
 	{
-		if (controlMode == 0)
+		if (controlMode == 1)
 		{
 			mainCamera.cameraPos -= cameraSpeed * mainCamera.cameraFront;
 		}
-		else if (controlMode == 1)
+		else
 		{
 			//mainPlayer->forceValue -=  mainPlayer->playerFront * mainPlayer->speed;
 			mainPlayer->forceValue += glm::vec3(1.0, 0.0, 0.0) * mainPlayer->speed;
@@ -183,43 +231,51 @@ void GameEngine::processInput(GLFWwindow* window)
 	}
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
-		if (controlMode == 0)
+		if (controlMode == 1)
 		{
 			mainCamera.cameraPos -= glm::normalize(glm::cross(mainCamera.cameraFront, mainCamera.cameraUp)) * cameraSpeed;
 		}
-		else if (controlMode == 1)
+		else
 		{
 			mainPlayer->rotForceValue -= glm::vec3(1.0, 1.0, 1.0) * mainPlayer->rotSpeed;
 		}
 	}
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 	{
-		if (controlMode == 0)
+		if (controlMode == 1)
 		{
 			mainCamera.cameraPos += glm::normalize(glm::cross(mainCamera.cameraFront, mainCamera.cameraUp)) * cameraSpeed;
 		}
-		else if (controlMode == 1)
+		else
 		{
 			mainPlayer->rotForceValue += glm::vec3(1.0, 1.0, 1.0) * mainPlayer->rotSpeed;
 		}
 	}
 
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
 	{
-		if (controlMode == 0)
-		{
-			controlMode = 1;
-		}
-		else if (controlMode == 1)
-		{
-			controlMode = 0;
-		}
+		controlMode = 1;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+	{
+		controlMode = 2;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+	{
+		controlMode = 3;
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+	{
+		controlMode = 4;
 	}
 }
 
 void GameEngine::InitEngine()
 {
-	controlMode = 0;
+	controlMode = 1;
 	diffuseStrength = 0.5f;
 	specularStrength = 1.0f;
 	deltaTime = 0.0f;
@@ -233,6 +289,7 @@ void GameEngine::InitEngine()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	//Create window
 	cout << "Creating window..." << endl;
@@ -259,12 +316,16 @@ void GameEngine::InitEngine()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 	}
 
+	glEnable(GL_MULTISAMPLE);
 	glEnable(GL_DEPTH_TEST);
 
 	//Build & Compile shader program
 	cout << "Creating shader program..." << endl;
 	engineShader = Shader("Vertex.vs", "Fragment.fs");
 	engineShader.Start();
+
+	skyboxShader = Shader("ShaderVertex.vs", "ShaderFrag.fs");
+	skyboxShader.Start();
 }
 
 void GameEngine::AddGameObject(GameObject* object)
@@ -295,7 +356,7 @@ void GameEngine::Generate()
 		objects[i]->myShader = engineShader;
 		objects[i]->LoadModel();
 
-		if (objects[i]->name = "Player")
+		if (objects[i]->name == "Player")
 		{
 			mainPlayer = objects[i];
 			cout << "Found player" << endl;
@@ -304,9 +365,16 @@ void GameEngine::Generate()
 	
 	mainLight->CreateBuffers();
 	mainLight->CreateTextures();
-	
+	mainLight->LoadModel();
+
+	mainSkybox->CreateBuffers();
+	mainSkybox->CreateTextures();
+
 	engineShader.SetInt("material.texture_diffuse", GL_TEXTURE0);
 	engineShader.SetInt("material.texture_specular", GL_TEXTURE1);
+
+	skyboxShader.Use();
+	skyboxShader.SetInt("skybox", 0);
 }
 
 

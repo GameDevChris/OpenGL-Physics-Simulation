@@ -21,13 +21,14 @@ GameEngine engine;
 
 //GameObject* richardCube = new Cube(5.0f, 0.0f, glm::vec3(1, 0, 3), glm::vec3(1, 1, 1), glm::vec3(1, 1, 0), "./richard.jpg");
 
-//GameObject* plane = new Plane(5.0f, 0.0f, glm::vec3(0, -0.017, 0), glm::vec3(5, 5, 5), glm::vec3(1, 1, 1), "./ollie.jpg");
+//GameObject* plane = new Plane(glm::vec3(0, -3, 0), glm::vec3(100, 100, 100), "./grass.jpg");
 //GameObject* plane2 = new Plane(5.0f, 45.0f, glm::vec3(0, -0.4, -0.4), glm::vec3(5, 5, 5), glm::vec3(1, 1, 1), "./evans2.jpg");
 
-GameObject* ambientLight = new Light(5.0f, glm::vec3(0, 0, 0), glm::vec3(0, 1, 3), glm::vec3(1, 1, 1), glm::vec3(1.0f, 1.0f, 1.0f), "./lamp.jpg");
+GameObject* ambientLight = new Light("./Sun/Sun.obj");
 
 GameObject* player = new Player(5, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.1, 0.1, 0.1), glm::vec3(1, 1, 1), "./Hover/Hover.obj");
-
+GameObject* track = new Track("./newTrack/Track.obj");
+GameObject* skybox = new Skybox();
 
 int main()
 {
@@ -39,17 +40,16 @@ int main()
 	engine.AddGameObject(cube6);
 	engine.AddGameObject(testCube);
 	engine.AddGameObject(richardCube);
-	engine.AddGameObject(plane);
+	
 	engine.AddGameObject(plane2);*/
 
+	//engine.AddGameObject(plane);
 	engine.AddGameObject(player); 
+	engine.AddGameObject(track);
 
 	engine.InitEngine();
 	engine.SetupLights(ambientLight);
-	//Model scorpion("./Hover/Hover.obj");
-	//engine.AddModel(scorpion);
-	//Model track("./Track/Track.obj");
-	//engine.AddModel(track);
+	engine.SetupSkybox(skybox);
 	engine.Generate();
 	engine.StartEngine();
 }

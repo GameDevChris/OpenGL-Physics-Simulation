@@ -1,0 +1,83 @@
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 25.03.2020 12:26:14
+
+newmtl 01___Default
+	Ns 100.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+map_Kd Diffuse.png
+map_Bump Normal.png
+map_Ks Specular.png
+map_Ka Height.png
+
+
+newmtl 02___Default
+	Ns 100.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+map_Kd Diffuse_0.png
+map_Bump Normal_0.png
+map_Ks Specular_0.png
+map_Ka Height_0.png
+
+newmtl 03___Default
+	Ns 100.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+map_Kd Diffuse_1.png
+map_Bump Normal_2.png
+map_Ks Specular_2.png
+map_Ka Height_1.png
+
+newmtl 07___Default
+	Ns 100.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+map_Kd Diffuse_2.png
+map_Bump Normal_2.png
+map_Ks Specular_2.png
+map_Ka Height_2.png
+
+newmtl 08___Default
+	Ns 100.0000
+	Ni 1.5000
+	d 1.0000
+	Tr 0.0000
+	Tf 1.0000 1.0000 1.0000 
+	illum 2
+	Ka 1.0000 1.0000 1.0000
+	Kd 1.0000 1.0000 1.0000
+	Ks 1.0000 1.0000 1.0000
+	Ke 0.0000 0.0000 0.0000
+map_Kd Diffuse_3.png
+map_Bump Normal_3.png
+map_Ks Specular_3.png
+map_Ka Height_3.png

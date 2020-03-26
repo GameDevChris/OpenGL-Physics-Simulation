@@ -20,6 +20,7 @@ in vec2 TexCoord;
 in vec3 FragPos;  
 in vec3 Normal;
 
+//uniform samplerCube skybox;
 //uniform vec3 texture_normal; 
 uniform vec3 viewPos; 
 uniform Material material;

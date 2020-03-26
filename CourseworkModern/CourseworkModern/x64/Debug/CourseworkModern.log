@@ -1,10 +1,17 @@
 ﻿  GameEngine.cpp
 C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameObject.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameObject.h(16,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Accessory.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Cube.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Skybox.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Light.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Player.cpp
-C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameEngine.cpp(32,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Source.cpp
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameEngine.cpp(34,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameObject.h(15,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\GameObject.h(16,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Accessory.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Cube.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Skybox.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating Code...
-C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Player.cpp(43,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\CourseworkModern\Light.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   CourseworkModern.vcxproj -> C:\Users\Chris\Desktop\Test\8522104\CourseworkModern\x64\Debug\CourseworkModern.exe

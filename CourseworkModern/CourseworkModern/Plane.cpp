@@ -1,13 +1,12 @@
 #include "Plane.h"
 using namespace std;
 
-Plane::Plane(float m, glm::vec3 rot, glm::vec3 pos, glm::vec3 sca, glm::vec3 col, std::string tp) : GameObject(m, rot, pos, sca, col)
+Plane::Plane(glm::vec3 pos, glm::vec3 sca, std::string texPath)
 {
 	name = "Plane";
 	position = pos;
 	scale = sca;
-	orientation = rot;
-	currentColor = col;
+	diffuseTexturePath = texPath;
 }
 
 Plane::~Plane()
@@ -24,9 +23,6 @@ void Plane::Draw()
 	glBindVertexArray(0);
 }
 
-void Plane::Update(float deltaTime)
-{
-}
 
 void Plane::CreateBuffers()
 {

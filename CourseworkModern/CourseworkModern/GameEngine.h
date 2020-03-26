@@ -13,6 +13,8 @@
 #include "Plane.h"
 #include "Cube.h"
 #include "Player.h"
+#include "Track.h"
+#include "Skybox.h"
 #include "Obstacle.h"
 #include "Camera.h"
 #include "Model.h"
@@ -34,7 +36,10 @@ private:
 	static int controlMode;
 
 public:	
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
 
+	GameObject* mainSkybox;
 	GameObject* mainLight;
 	static GameObject* mainPlayer;
 
@@ -46,6 +51,7 @@ public:
 	static float lastFrame;
 	static Camera mainCamera;
 	Shader engineShader;
+	Shader skyboxShader;
     GLFWwindow* window;
 	
 	void InitEngine();
@@ -57,5 +63,6 @@ public:
 	void CreateTransforms();
 	void SortObjects();
 	void SetupLights(GameObject* ambientLight);
+	void SetupSkybox(GameObject* skybox);
 	
 };

@@ -13,13 +13,15 @@
 #include <map>
 #include "SphereCollider.h"
 #include "Model.h";
+#include "Accessory.h";
 
 class GameObject
 {
 public:
 
 	const char* name = "Name";
-	
+	string state;
+
 	//Attributes
 	glm::vec3 scale;
 	glm::vec3 position;
@@ -29,6 +31,9 @@ public:
 	//Model
 	std::string modelPath = "";
 	Model* model;
+
+	Accessory* target;
+	Accessory* thirdPerson;
 
 	//Player directions
 	float yaw = 0.0f;
@@ -67,6 +72,7 @@ public:
 	//Shader
 	Shader myShader;
 
+	GameObject();
 	GameObject(float m, glm::vec3 rot, glm::vec3 pos, glm::vec3 sca, glm::vec3 col);
 	
 	//Optional textures
@@ -79,7 +85,7 @@ public:
 	~GameObject();
 
 	void CheckCollided();
-	void LoadModel();
+	virtual void LoadModel();
 	virtual void FindForward();
 	virtual void Draw();
 	virtual void Update(float deltaTime);

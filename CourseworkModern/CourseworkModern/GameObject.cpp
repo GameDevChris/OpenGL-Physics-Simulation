@@ -1,6 +1,10 @@
 #include "GameObject.h"
 using namespace std;
 
+GameObject::GameObject()
+{
+}
+
 GameObject::GameObject(float m, glm::vec3 r, glm::vec3 pos, glm::vec3 sca, glm::vec3 col)
 {
 }
@@ -17,6 +21,7 @@ void GameObject::LoadModel()
 {
 	if (modelPath != "")
 	{
+		cout << "Loading a " << name << " with model path " << modelPath << endl;
 		model->loadModel();
 	}
 }
@@ -27,7 +32,7 @@ void GameObject::FindForward()
 
 void GameObject::Draw()
 {
-
+	cout << "Drawing a " << name << endl;
 	model->Draw(myShader);
 }
 
