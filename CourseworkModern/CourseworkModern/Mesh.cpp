@@ -41,18 +41,13 @@ void Mesh::Draw(Shader shader)
 }
 
 void Mesh::setupMesh()
-{
-	
-	//cout << "Setting up cube buffer..." << endl;
+{	
 	//Vertex data & Buffers setup
-	//cout << "Help..." << endl;
 	glGenVertexArrays(1, &VAO);
 
 	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &EBO);
 
-	
-	//cout << "	Binding VAO & VBO..." << endl;
 	//Bind VAO & VBO
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -62,7 +57,6 @@ void Mesh::setupMesh()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 
-	//cout << "	Configuring vertex attributes..." << endl;
 	//Configure vertex attribute
 	//Position attribute
 	glEnableVertexAttribArray(0);

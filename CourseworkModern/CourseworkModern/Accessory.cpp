@@ -16,7 +16,8 @@ Accessory::~Accessory()
 {
 }
 
-Accessory::Accessory(std::string modelPath)
+Accessory::Accessory(std::string modelPath, glm::vec3 myScale)
 {
+	scale = myScale;
 	myModel = new Model(modelPath);
 }

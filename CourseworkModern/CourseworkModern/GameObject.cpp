@@ -21,18 +21,12 @@ void GameObject::LoadModel()
 {
 	if (modelPath != "")
 	{
-		cout << "Loading a " << name << " with model path " << modelPath << endl;
 		model->loadModel();
 	}
 }
 
-void GameObject::FindForward()
-{
-}
-
 void GameObject::Draw()
 {
-	cout << "Drawing a " << name << endl;
 	model->Draw(myShader);
 }
 
@@ -50,7 +44,6 @@ void GameObject::CreateTextures()
 	//Diffuse
 	if (diffuseTexturePath != "")
 	{
-		std::cout << "	Creating diffuse texture with texture path: " << diffuseTexturePath << "..." << std::endl;
 		glGenTextures(1, &diffuseTexture);
 
 		int width, height, nrChannels;
@@ -68,13 +61,6 @@ void GameObject::CreateTextures()
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-			std::cout << "		Correctly loaded diffuse texture" << endl;
-		}
-
-		else
-		{
-			std::cout << "		Failed to load diffuse texture" << endl;
 		}
 		stbi_image_free(data);
 	}
@@ -82,7 +68,6 @@ void GameObject::CreateTextures()
 	//Specular
 	if (specTexturePath != "")
 	{
-		std::cout << "	Creating diffuse texture with texture path: " << specTexturePath << "..." << std::endl;
 		glGenTextures(1, &specTexture);
 
 		int width, height, nrChannels;
@@ -100,12 +85,6 @@ void GameObject::CreateTextures()
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-			std::cout << "		Correctly loaded specular texture: " << specTexture << endl << endl;
-		}
-
-		else
-		{
-			std::cout << "		Failed to load specular texture" << endl << endl;
 		}
 		stbi_image_free(data);
 	}

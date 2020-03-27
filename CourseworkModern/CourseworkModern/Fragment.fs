@@ -20,8 +20,6 @@ in vec2 TexCoord;
 in vec3 FragPos;  
 in vec3 Normal;
 
-//uniform samplerCube skybox;
-//uniform vec3 texture_normal; 
 uniform vec3 viewPos; 
 uniform Material material;
 uniform Light light;
@@ -41,7 +39,6 @@ vec3 diffuse = light.diffuse * diff * texture(material.texture_diffuse, TexCoord
 vec3 viewDir = normalize(viewPos - FragPos);
 vec3 reflectDir = reflect(-lightDir, norm);
 float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shininess);
-
 vec3 specular = light.specular * spec * texture(material.texture_specular, TexCoord).rgb;
 
 vec3 result = (ambient + diffuse + specular);
@@ -52,5 +49,4 @@ if(ourColor == vec3(1.0f, 0.0f, 0.0f))
 }
 
 FragColor = vec4(result, 1.0);
- //* vec4(ourColor, 1.0);
 }

@@ -9,13 +9,14 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "ColData.h"
 #include "GameObject.h"
 #include "Plane.h"
 #include "Cube.h"
 #include "Player.h"
 #include "Track.h"
-#include "Skybox.h"
 #include "Obstacle.h"
+#include "Skybox.h"
 #include "Camera.h"
 #include "Model.h"
 #include "Light.h"
@@ -27,42 +28,44 @@ class GameEngine
 {
 private:
 	static vector<GameObject*> objects;
-	static vector<Model> models;
-	static vector<GameObject*> cubes;
-	static void CleanupEngine();
-	static void ResizeWindow(GLFWwindow* window, int width, int height);
-	static void processInput(GLFWwindow* window);
 
 	static int controlMode;
+	static int boost;
+	static float cameraSpeed;
 
-public:	
-	glm::mat4 view = glm::mat4(1.0f);
-	glm::mat4 projection = glm::mat4(1.0f);
-
-	GameObject* mainSkybox;
-	GameObject* mainLight;
-	static GameObject* mainPlayer;
+	static float deltaTime;
+	static float lastFrame;
 
 	static float specularStrength;
 	static float diffuseStrength;
 
-	bool cubesPrepared;
-	static float deltaTime;
-	static float lastFrame;
 	static Camera mainCamera;
+	static GameObject* mainSkybox;
+	static GameObject* mainLight;
+	static GameObject* mainPlayer;
+
+	static void CleanupEngine();
+	static void ResizeWindow(GLFWwindow* window, int width, int height);
+	static void processInput(GLFWwindow* window);
+
+	static bool Debug;
+
+public:	
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+	
+	
 	Shader engineShader;
 	Shader skyboxShader;
     GLFWwindow* window;
 	
-	void InitEngine();
 	void AddGameObject(GameObject*);
-	void AddModel(Model);
+	void SetupLights(GameObject* ambientLight);
+	void SetupSkybox(GameObject* skybox);
+
+	void InitEngine();
 	void StartEngine();
 	void Generate();
 	void UpdateGame();
 	void CreateTransforms();
-	void SortObjects();
-	void SetupLights(GameObject* ambientLight);
-	void SetupSkybox(GameObject* skybox);
-	
 };

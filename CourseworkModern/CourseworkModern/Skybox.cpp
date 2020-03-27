@@ -3,7 +3,6 @@ using namespace std;
 
 void Skybox::CreateTextures()
 {
-	cout << "Creating Skybox textures" << endl;
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
@@ -15,15 +14,9 @@ void Skybox::CreateTextures()
 		unsigned char* data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
 		if (data)
 		{
-			cout << "Cubemap tex succesfully loaded at path: " << faces[i] << endl;
 			glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
 				0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data
 			);
-			stbi_image_free(data);
-		}
-		else
-		{
-			cout << "Cubemap tex failed to load at path: " << faces[i] << endl;
 			stbi_image_free(data);
 		}
 	}
@@ -39,7 +32,6 @@ void Skybox::CreateTextures()
 
 void Skybox::CreateBuffers()
 {
-	cout << "Creating Skybox buffers" << endl;
 	//Vertex data & Buffers setup
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);

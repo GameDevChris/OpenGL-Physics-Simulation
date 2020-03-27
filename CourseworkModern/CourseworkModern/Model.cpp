@@ -13,7 +13,6 @@ void Model::Draw(Shader shader)
 
 void Model::loadModel()
 {
-	//cout << "doing shit" << endl;
 	string path = modelPath.c_str();
 	Assimp::Importer importer;
 	const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
@@ -145,7 +144,6 @@ unsigned int TextureFromFile(const char* path, const string& directory, bool gam
 {
 	string filename = string(path);
 	filename = directory + '/' + filename;
-	cout << filename << endl;
 	unsigned int textureID;
 	glGenTextures(1, &textureID);
 

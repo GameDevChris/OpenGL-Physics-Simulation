@@ -23,21 +23,17 @@ void Plane::Draw()
 	glBindVertexArray(0);
 }
 
-
 void Plane::CreateBuffers()
 {
-	cout << "	Setting up buffer..." << endl;
 	//Vertex data & Buffers setup
 	glGenVertexArrays(1, &VAO);
 	glGenBuffers(1, &VBO);
 
-	cout << "	Binding VAO & VBO..." << endl;
 	//Bind VAO & VBO
 	glBindVertexArray(VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-	cout << "	Configuring vertex attributes..." << endl;
 	//Configure vertex attribute
 	//Position attribute
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);

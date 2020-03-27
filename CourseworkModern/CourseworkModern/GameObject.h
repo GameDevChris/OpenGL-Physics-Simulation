@@ -19,6 +19,7 @@ class GameObject
 {
 public:
 
+	//Name and state
 	const char* name = "Name";
 	string state;
 
@@ -32,30 +33,31 @@ public:
 	std::string modelPath = "";
 	Model* model;
 
+	//Accessories
 	Accessory* target;
 	Accessory* thirdPerson;
 
-	//Player directions
-	float yaw = 0.0f;
-	float pitch = 0.0f;
-	static bool firstInput;
-	glm::vec3 playerFront = glm::vec3(0.0f, 0.0f, -1.0f);
-	glm::vec3 playerUp = glm::vec3(0.0f, 1.0f, 0.0f);
+	//Collider
+	SphereCollider* collider;
+	std::string colState = "dynamic";
 
 	//Colors
 	glm::vec3 currentColor;
 	glm::vec3 initialColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
+	//Debug
+	bool Debug = false;
+
 	//Linear Movement
-	glm::vec3 forceValue = glm::vec3(0, 0, 0);
 	float mass = 1.0f;
+	glm::vec3 forceValue = glm::vec3(0, 0, 0);
 	glm::vec3 linear_acceleration;
 	glm::vec3 linear_velocity;
 	glm::vec3 linear_totalForce;
 
 	//Rotational Movement
-	glm::vec3 rotForceValue = glm::vec3(0, 0, 0);
 	float inertia = 1.0f;
+	glm::vec3 rotForceValue = glm::vec3(0, 0, 0);
 	glm::vec3 orientation;
 	glm::vec3 angular_acceleration;
 	glm::vec3 angular_velocity;
@@ -64,7 +66,7 @@ public:
 	//Collision
 	float coefRest = 0.5f;
 	bool collided = false;
-	SphereCollider collider;
+	//SphereCollider collider;
 
 	//Buffer
 	unsigned int VBO, VAO;
@@ -72,21 +74,21 @@ public:
 	//Shader
 	Shader myShader;
 
-	GameObject();
-	GameObject(float m, glm::vec3 rot, glm::vec3 pos, glm::vec3 sca, glm::vec3 col);
-	
-	//Optional textures
+	//Optional textures (if model not loaded)
 	unsigned int diffuseTexture;
 	string diffuseTexturePath = "";
-
 	unsigned int specTexture;
 	string specTexturePath = "";
 
+	//Constructors
+	GameObject();
+	GameObject(float m, glm::vec3 rot, glm::vec3 pos, glm::vec3 sca, glm::vec3 col);
+
+	//Destructor
 	~GameObject();
 
 	void CheckCollided();
 	virtual void LoadModel();
-	virtual void FindForward();
 	virtual void Draw();
 	virtual void Update(float deltaTime);
 	virtual void CreateBuffers();

@@ -9,7 +9,7 @@ public:
 	glm::vec3 scale = glm::vec3(0.1f, 0.1f, 0.1f);
 	Model* myModel;
 	void Draw(Shader myShader);
-	Accessory(std::string modelPath);
+	Accessory(std::string modelPath, glm::vec3 myScale);
 	~Accessory();
 };
 
