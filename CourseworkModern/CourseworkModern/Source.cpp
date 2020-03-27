@@ -12,7 +12,7 @@ GameObject* ambientLight = new Light("./Sun/Sun.obj");
 GameObject* skybox = new Skybox();
 
 //Player
-GameObject* player = new Player(5, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.1, 0.1, 0.1), glm::vec3(1, 1, 1), "./Hover/Hover.obj");
+GameObject* player = new Player(5, glm::vec3(0, 0, 0), glm::vec3(0, 0, 0), glm::vec3(0.1, 0.1, 0.1), glm::vec3(1, 1, 1), "./Hover/Hover/Hover.obj");
 
 //Track
 GameObject* track = new Track("./newTrack/Track.obj");

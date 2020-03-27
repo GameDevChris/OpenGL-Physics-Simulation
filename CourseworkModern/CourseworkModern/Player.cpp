@@ -14,6 +14,7 @@ Player::Player(float m, glm::vec3 rot, glm::vec3 pos, glm::vec3 sca, glm::vec3 c
 
 	model = new Model(modelPath);
 	spinny = new Accessory("./Spinny/Spinny.obj", glm::vec3(0.1f, 0.1f, 0.1f));
+	//turbine = new Accessory("./Hover/Turbine/Turbine.obj", glm::vec3(0.1f, 0.1f, 0.1f));
 	target = new Accessory("./Target/target.obj", glm::vec3(0.05, 0.05, 0.05));
 	thirdPerson = new Accessory("./Target/target.obj", glm::vec3(0.05, 0.05, 0.05));
 
@@ -28,6 +29,7 @@ void Player::LoadModel()
 {
 	model->loadModel();
 	spinny->myModel->loadModel();
+	//turbine->myModel->loadModel();
 	target->myModel->loadModel();
 	thirdPerson->myModel->loadModel();
 
@@ -38,8 +40,8 @@ void Player::Update(float deltaTime)
 {
 	//cout << "(" << linear_velocity.x << ", " << linear_velocity.y << ", " << linear_velocity.z << ")" << endl;
 	spinny->position = position;
-	spinny->position.y -= 0.7;
-	
+	//turbine->position = position;
+
 	if (linear_velocity.x > 0.1) 
 	{
 		state = "moving";
@@ -110,6 +112,7 @@ void Player::Draw()
 {
 	model->Draw(myShader);
 	spinny->Draw(myShader);
+	//turbine->Draw(myShader);
 
 	if (Debug) 
 	{

@@ -184,7 +184,8 @@ void GameEngine::CreateTransforms()
 	}
 
 	//Create Projection Matrix
-	projection = glm::perspective(glm::radians(mainCamera.fov), 960.0f / 540.0f, 0.1f, 100.0f);
+	projection = glm::perspective(glm::radians(mainCamera.fov), 1920.0f / 1080.0f, 0.1f, 200.0f);
+	//projection = glm::perspective(glm::radians(mainCamera.fov), 960.0f / 540.0f, 0.1f, 200.0f);
 	engineShader.setMat4("projection", projection);
 }
 
@@ -374,7 +375,8 @@ void GameEngine::InitEngine()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	//Create window
-	window = glfwCreateWindow(960, 540, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
+	window = glfwCreateWindow(1920, 1080, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
+	//window = glfwCreateWindow(960, 540, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
 	mainCamera.gameWindow = window;
 	if (window == NULL)
 		{

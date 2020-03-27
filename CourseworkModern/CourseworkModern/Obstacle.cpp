@@ -10,6 +10,7 @@ Obstacle::Obstacle(std::string modpath, std::string state, glm::vec3 pos, glm::v
 	model = new Model(modelPath);
 
 	collider = new SphereCollider("./Sphere/Sphere.obj", 3.0f);
+	spinny = new Accessory("./Pole/Hoop/Hoop.obj", glm::vec3(0.08f, 0.08f, 0.08f));
 }
 
 Obstacle::~Obstacle()
@@ -20,6 +21,11 @@ void Obstacle::Draw()
 {
 	model->Draw(myShader);
 
+	if (colState == "static")
+	{
+		spinny->Draw(myShader);
+	}
+
 	if (Debug)
 	{
 		collider->Draw(myShader);
@@ -28,6 +34,7 @@ void Obstacle::Draw()
 
 void Obstacle::Update(float deltaTime)
 {
+	spinny->position = position;
 	collider->colPosition = position;
 
 	glm::vec3 forcePos = glm::vec3(0, 1, 0);
@@ -55,6 +62,6 @@ void Obstacle::Update(float deltaTime)
 void Obstacle::LoadModel()
 {
 	model->loadModel();
-	
+	spinny->myModel->loadModel();
 	collider->myModel->loadModel();
 }

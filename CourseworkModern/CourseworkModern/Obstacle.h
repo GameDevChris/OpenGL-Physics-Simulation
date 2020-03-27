@@ -3,6 +3,7 @@
 class Obstacle : public GameObject
 {
 public:
+	Accessory* spinny;
 	Obstacle(std::string modpath, std::string state, glm::vec3 pos, glm::vec3 sca);
 	~Obstacle();
 	void Draw();
