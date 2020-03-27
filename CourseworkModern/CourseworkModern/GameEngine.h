@@ -62,6 +62,7 @@ public:
 	void AddGameObject(GameObject*);
 	void SetupLights(GameObject* ambientLight);
 	void SetupSkybox(GameObject* skybox);
+	void PrintControls();
 
 	void InitEngine();
 	void StartEngine();

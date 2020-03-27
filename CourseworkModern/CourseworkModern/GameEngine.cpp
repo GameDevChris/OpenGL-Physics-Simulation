@@ -184,8 +184,8 @@ void GameEngine::CreateTransforms()
 	}
 
 	//Create Projection Matrix
-	projection = glm::perspective(glm::radians(mainCamera.fov), 1920.0f / 1080.0f, 0.1f, 200.0f);
-	//projection = glm::perspective(glm::radians(mainCamera.fov), 960.0f / 540.0f, 0.1f, 200.0f);
+	//projection = glm::perspective(glm::radians(mainCamera.fov), 1920.0f / 1080.0f, 0.1f, 200.0f);
+	projection = glm::perspective(glm::radians(mainCamera.fov), 960.0f / 540.0f, 0.1f, 200.0f);
 	engineShader.setMat4("projection", projection);
 }
 
@@ -199,6 +199,30 @@ void GameEngine::SetupSkybox(GameObject* skybox)
 {
 	//Assigning skybox
 	mainSkybox = skybox;
+}
+
+void GameEngine::PrintControls()
+{
+	cout << endl;
+
+	cout << "Thanks for playing, here are the controls: " << endl;
+	cout << "-WASD: Move Camera in free roam, move craft in over camera views." << endl;
+	cout << "-Esc: Exit game." << endl;
+	cout << "-Up/Down: Increase and decrease light diffuse strength." << endl;
+	cout << "-Right/Left: Increase and decrease light specular strength." << endl;
+	cout << "-LeftShift: Boost/Sprint." << endl;
+	cout << "-LeftControl: Show colliders, targets and plane." << endl;
+	cout << "-RightControl: Hide colliders, targets and plane." << endl << endl;
+
+	cout << "Camera modes: " << endl;
+	cout << "-Key 1: Free Roam camera mode." << endl;
+	cout << "-Key 2: First Person camera mode." << endl;
+	cout << "-Key 3: Third Person camera mode." << endl;
+	cout << "-Key 4: Top-Down camera mode." << endl << endl;
+
+	cout << "Extra information: " << endl;
+	cout << "-Asteroids are dynamic objects that move when collided with." << endl;
+	cout << "-Poles are static and don't move when collided." << endl;
 }
 
 void GameEngine::CleanupEngine()
@@ -264,8 +288,7 @@ void GameEngine::processInput(GLFWwindow* window)
 			mainCamera.cameraPos += cameraSpeed * mainCamera.cameraFront;
 		}
 		else
-		{
-			//mainPlayer->forceValue +=  mainPlayer->playerFront * mainPlayer->speed; 
+		{ 
 			mainPlayer->forceValue -= glm::vec3(1.0, 0.0, 0.0) * (mainPlayer->speed * boost); 
 		}
 	}
@@ -375,8 +398,8 @@ void GameEngine::InitEngine()
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
 	//Create window
-	window = glfwCreateWindow(1920, 1080, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
-	//window = glfwCreateWindow(960, 540, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
+	//window = glfwCreateWindow(1920, 1080, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
+	window = glfwCreateWindow(960, 540, "Chris Bodsworth - 212/217 Coursework", NULL, NULL);
 	mainCamera.gameWindow = window;
 	if (window == NULL)
 		{

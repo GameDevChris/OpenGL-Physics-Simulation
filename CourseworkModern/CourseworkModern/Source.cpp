@@ -61,6 +61,9 @@ int main()
 	//Generating objects
 	engine.Generate();
 
+	//Show instructions
+	engine.PrintControls();
+
 	//Starting engine
 	engine.StartEngine();
 }
